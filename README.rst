@@ -18,8 +18,8 @@ Compilation
 Typical makefile setup...
 
 .. code-block:: bash
-make
-./c8 "filename.ch8"
+    make
+    ./c8 "filename.ch8"
 
 
 TODO and Known Issues
