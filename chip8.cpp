@@ -131,6 +131,7 @@ void chip8::executeOp(){
 			//  Apparently we need to handle number wraps here...
 			//  So, we add together the two unsigned integers and store them in an int
 			//  then if we are larger than 255, we subtract %255 and store them in an unsigned char
+            /*
 			int tempresult = (this->V[(this->opcode&0x0f00)>>8] + this->opcode&0x00ff);
 			if(tempresult > 255)
 			{
@@ -140,6 +141,7 @@ void chip8::executeOp(){
 			else{
 				this->V[(this->opcode&0x0f00)>>8] += (this->opcode&0x00ff);
 			}
+            */
 			break;
 		case 0x8000:
 			switch(this->opcode&0x000f){
@@ -157,7 +159,7 @@ void chip8::executeOp(){
 					break;
 				case 4:
 					// Looks correct, added check for overflow
-					int temp = this->V[(this->opcode&0x0f00)>>8]+this->V[(this->opcode&0x00f0)>>4];
+					/*int temp = this->V[(this->opcode&0x0f00)>>8]+this->V[(this->opcode&0x00f0)>>4];
 					if(temp > 255){
 						this->V[0x0f] = 1;
 						temp = temp - temp%255;
@@ -166,6 +168,7 @@ void chip8::executeOp(){
 						this->V[0x0f] = 0;
 
 					this->V[(this->opcode&0x0f00)>>8] = (unsigned char) temp;
+                    */
 					break;
 				case 5:
 					// Looks correct
