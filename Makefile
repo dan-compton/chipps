@@ -9,4 +9,5 @@ screen.o: screen.cpp screen.h
 c8.o: c8.cpp c8.h
 	g++ -c c8.cpp c8.h
 clean:
-	rm *.o *.gch
+	rm *.o *.gch .chip8*
+
