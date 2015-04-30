@@ -4,6 +4,7 @@
 #include <iostream>
 #define DEBUG_MODE
 #define SLOW_MO
+#define SHOW_PC
 
 chip8 c8;
 screen sc;

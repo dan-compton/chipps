@@ -226,15 +226,15 @@ void chip8::executeOp(){
 						for(int j=0; j<7; j++)
 						{
 							unsigned short oldval = this->display[y1+i][x1+j];
-							unsigned short newval = halfrowA&(2<<6-j) > 0 ? 1 : 0;
+							unsigned short newval = (halfrowA&(2<<(6-j))) > 0 ? 1 : 0;
 							this->display[y1+i][x1+j] = newval;
 							if(oldval != newval){
 								changed = false;
 							}
 						}
 						unsigned short oldval = this->display[y1+i-1][x1+7];
-						unsigned short newval = halfrowA&(0x01) > 0 ? 1 : 0;
-						this->display[y1+i-1][x1+7] = halfrowA&(0x01) > 0 ? 1 : 0;
+						unsigned short newval = ((halfrowA&(0x01)) > 0) ? 1 : 0;
+						this->display[y1+i-1][x1+7] = (halfrowA&(0x01)) > 0 ? 1 : 0;
 						if(oldval != newval)
 							changed = false;
 						index += 8;
@@ -386,59 +386,9 @@ void chip8::disasmOp(){
 					cout << "] = " << this->V[(this->opcode&0x00f0)>>4] << endl;
 					cout << "}";
 					break;
-					/*
-					   case 1:
-#ifdef DEBUG_MODE
-cout << "mov V" << ((this->opcode&0x0f00)>>8) << ", V" << ((this->opcode&0x0f00)>>8) << " OR V" << ((this->opcode&0x0f0)>>4) << endl;
-#endif
-this->V[(this->opcode&0x0f00)>>8] = this->V[(this->opcode&0x0f00)>>8]|this->V[(this->opcode&0x00f0)>>4];
-break;
-case 2:
-#ifdef DEBUG_MODE
-cout << "mov V" << ((this->opcode&0x0f00)>>8) << ", V" << ((this->opcode&0x0f00)>>8) << " AND V" << ((this->opcode&0x0f0)>>4) << endl;
-#endif
-this->V[(this->opcode&0x0f00)>>8] = this->V[(this->opcode&0x0f00)>>8]&this->V[(this->opcode&0x00f0)>>4];
-break;
-case 3:
-#ifdef DEBUG_MODE
-cout << "mov V" << ((this->opcode&0x0f00)>>8) << ", V" << ((this->opcode&0x0f00)>>8) << " XOR V" << ((this->opcode&0x0f0)>>4) << endl;
-#endif
-this->V[(this->opcode&0x0f00)>>8] = this->V[(this->opcode&0x0f00)>>8]^this->V[(this->opcode&0x00f0)>>4];
-break;
-case 4:
-#ifdef DEBUG_MODE
-cout << "addc V" << ((this->opcode&0x0f00)>>8) << ", V" << ((this->opcode&0x0f0)>>4) << endl;
-#endif
-if(this->V[(this->opcode&0x0f00)>>8]+this->V[(this->opcode&0x00f0)>>4] > 0xffff)
-this->V[0x0f] = 1;
-else
-this->V[0x0f] = 0;
-this->V[(this->opcode&0x0f00)>>8] = this->V[(this->opcode&0x0f00)>>8]+this->V[(this->opcode&0x00f0)>>4];
-break;
-case 5:
-if(this->V[(this->opcode&0x0f00)>>8] < this->V[(this->opcode&0x00f0)>>4])
-this->V[0x0f] = 0;
-else
-this->V[0x0f] = 1;
-this->V[(this->opcode&0x0f00)>>8] = this->V[(this->opcode&0x0f00)>>8]-this->V[(this->opcode&0x00f0)>>4];
-break;
-case 6:
-this->V[0x0f] = this->V[(this->opcode&0x0f00)]&0x0001;
-this->V[(this->opcode&0x0f00)>>8] = this->V[(this->opcode&0x0f00)>>8]>>1;
-break;
-case 7:
-if(this->V[(this->opcode&0x00f0)>>4] < this->V[(this->opcode&0x0f00)>>8])
-this->V[0x0f] = 0;
-else
-this->V[0x0f] = 1;
-this->V[(this->opcode&0x0f00)>>8] = this->V[(this->opcode&0x00f0)>>4] - this->V[(this->opcode&0x0f00)>>8];
-break;
-case 0xe:
-this->V[0x0f] = (this->V[(this->opcode&0x0f00)]&0x8000)>>15;
-this->V[(this->opcode&0x0f00)>>8] = this->V[(this->opcode&0x0f00)>>8]<<1;
-break;
-*/
-			}
+
+                    //TODO Other cases
+		    }
 			break;
 
 		case 0x9000:
